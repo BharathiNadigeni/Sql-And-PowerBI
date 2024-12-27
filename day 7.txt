@@ -1,0 +1,69 @@
+1	How many car_makers I have in each country. Please extract continent information as well
+2	Which car maker manufacturer most of the car models?
+3	Which car_makers do not manufacturer any cars?
+4	Which car_makers manufacture most cars (all cars to be captured in every model for this)
+5	Which year saw most cars manufactured? Extract the car maker, model information as well.
+
+select * from Continents;
+select * from Countries;
+select * from car_makers;
+select * from model_details;
+select * from car_names;
+select * from car_details;
+
+
+--How many car_makers I have in each country. Please extract continent information as well?
+
+select cont.continent, cntry.countryname, count(cm.maker)
+from continents cont
+inner join countries cntry on cntry.continent=cont.contid
+left join car_makers cm on cm.country=cntry.countryid
+group by cont.continent, cntry.countryname
+order by 1,2,3;
+
+--Which car maker manufacturer most of the car models?
+
+select cm.maker, cm.fullname, count(md.model)
+from car_makers cm
+left join model_details md on md.maker=cm.id
+group by cm.maker, cm.fullname
+order by 3 desc;
+
+-- Which car_makers do not manufacturer any cars?
+
+select cm.maker, cm.fullname, count(cn.id)
+from car_makers cm
+left join model_details md on md.maker=cm.id
+left join car_names cn on cn.model=md.model
+group by cm.maker, cm.fullname
+having count(cn.id)=0;
+
+-- Which car_makers manufacture most cars (all cars to be captured in every model for this)
+
+select cm.maker, cm.fullname, count(cn.id)
+from car_makers cm
+left join model_details md on md.maker=cm.id
+left join car_names cn on cn.model=md.model
+group by cm.maker, cm.fullname
+order by 3 desc;
+
+-- Which year saw most cars manufactured? Extract the car maker, model information as well.
+
+select year, count(*)
+    from car_details
+    group by year
+    order by 2 desc; -- 1973
+
+select cm.maker, cm.fullname, cd.year, count(cd.id)
+from car_makers cm
+left join model_details md on md.maker=cm.id
+left join car_names cn on cn.model=md.model
+left join car_details cd on cd.id=cn.id
+where year=1973
+group by cm.maker, cm.fullname, cd.year
+order by 4 desc;
+
+
+
+
+ 

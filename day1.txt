@@ -1,0 +1,23 @@
+select * from emp;
+select empno from emp;
+select empno, ename from emp;
+select empno, ename, hiredate, to_char(hiredate, 'YYYY') -- format model
+    from emp;
+select ename, substr(ename,1,1) from emp;
+select ename, substr(ename, 2, 2) from emp;
+
+select * from emp;
+select * from emp order by sal;
+select * from emp order by sal desc;
+select * from emp order by deptno, sal;
+select * from emp order by deptno, sal desc;
+
+
+
+select * from emp order by 6;
+select * from emp order by 6 desc;
+select * from emp order by 8 asc, 6 desc;
+select empno, ename, sal, deptno from emp order by 4 desc, 3;
+select * from emp order by deptno desc, job, sal desc;
+select * from emp order by to_char(hiredate,'YYYY');
+select * from emp order by deptno desc, to_char(hiredate,'YYYY') desc;

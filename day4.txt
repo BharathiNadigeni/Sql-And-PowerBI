@@ -1,0 +1,15 @@
+select ename, substr(ename,1,3) from emp;
+select ename, lower(ename), initcap(ename), upper(ename), length(ename) from emp;
+select * from emp where job='PRESIDENT';
+select ename, instr(ename, 'I',1,1) from  emp where job='PRESIDENT';
+select ename, instr(ename, 'I',1,1) from  emp;
+select ename, job, concat(ename, job) from emp;
+
+
+
+
+select avg(sal) from emp;
+select median(sal) from emp;
+select stats_mode(sal) from emp;
+select stddev(sal) from emp;
+select corr(sal, comm) from emp;

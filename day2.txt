@@ -1,0 +1,56 @@
+select * from emp where deptno=10;
+select * from emp where job='MANAGER';
+SELECT * from EMp Where deptno=30;
+select * from emp where job='CLERK';
+select * from emp where sal <=2000;
+select * from emp where sal between 2000 and 4000;
+
+select * from emp where sal<2000
+order by sal desc;
+
+select * from emp where job='CLERK'
+order by ename;
+
+select * from emp 
+    where to_char(hiredate,'YYYY')=1987;
+
+select * from emp
+    where substr(ename,1,1)='A';
+
+
+
+
+
+--- filtering on multiple columns
+select * from emp
+where sal < 2000
+and job='CLERK';
+
+select * from emp
+where sal between 2000 and 4000
+or deptno=30;
+
+select * from emp 
+where to_char(hiredate,'YYYY')=1981
+and job='CLERK'
+and deptno=30;
+
+select * from emp
+where to_char(hiredate,'YYYY')=1981
+and (
+    job='MANAGER' or deptno=30
+)
+order by deptno;
+
+
+
+
+
+home work:
+
+Select * from employee where extract(month from hire_date) = 5;
+select * from employee where department_name = 'Finance';
+select employee_name from employee where annual_salary<=50000;
+select * from employee where to_char(hire_date,'mm')=01;
+select * from employee order by annual_salary;
+select * from employee order by annual_salary desc;

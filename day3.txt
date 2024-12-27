@@ -1,0 +1,48 @@
+group functions
+
+
+sum, avg, min, max, count
+
+select sum(sal) from emp;
+select avg(sal) from emp;
+select min(sal), max(sal) from emp;
+select count(*) from emp;
+select count(empno) from emp;
+select count(*), sum(sal), avg(sal), min(Sal), max(sal) from emp;
+
+select * from emp order by sal;
+select count(sal), count(distinct sal) from emp;
+select sum(sal), sum(distinct sal) from emp;
+select count(*), sum(sal) from emp where deptno=20;
+'-' in this editor is a blank or NULL
+select count(comm) from emp
+
+
+
+H.W questions:-
+
+1) to extract count of employees in my organisation, total salary paid, min and max salary paid and average salary paid
+
+2) how many employees joined me in the month of June and what is the total salary I paid for those employees
+
+3) find out the min, max and avg salary paid to employees belonging to Finance Department
+
+4) how many employees joined me in year 2023 and what is the maxmim and minium salaries paid
+
+
+
+
+answers:-
+
+
+select count(*),sum(annual_salary),min(annual_salary),max(annual_salary) , avg(annual_salary) from employee;
+
+select count(*), sum(annual_salary) from employee 
+    where extract(month from HIRE_DATE)=6; 
+
+select min(annual_salary),max(annual_salary) , avg(annual_salary) from employee
+    where DEPARTMENT_NAME='Finance';
+
+select count(*),min(annual_salary),max(annual_salary) from employee
+    where to_char(HIRE_DATE,'YYYY')=2023;
+
