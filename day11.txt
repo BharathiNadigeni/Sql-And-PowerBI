@@ -1,0 +1,68 @@
+--combinations on different columns
+--deptno,job and sum(sal)
+-- group by
+select deptno, sum(sal)
+from emp
+group by deptno
+order by 1;
+
+select deptno, job, sum(sal)
+from emp
+    group by deptno, job
+order by 1,2;
+
+select job, sum(sal)
+    from emp
+    group by job;
+
+select sum(sal)
+    from emp;
+
+A GROUPING SETS expression allows you to selectively define one or more grouping sets in a query.
+-- grouping sets 
+select deptno, job, sum(sal)
+from emp
+group by 
+ grouping sets (
+    (deptno,job),
+    (deptno),
+    (job),
+    ()
+ )
+order by 1,2;
+
+
+select deptno, job, sum(sal)
+from emp
+group by 
+ grouping sets (
+    (deptno,job),
+    ()
+ )
+order by 1,2;
+
+
+
+
+
+The CUBE is an extension of the GROUP BY clause that allows you to generate grouping sets for all possible combinations of dimensions.
+--cube -in this we are not allow to pick and choose the combinations
+select deptno, job, sum(sal)
+from emp
+group by 
+   cube(deptno,job)
+order by 1,2;
+
+
+The ROLLUP is an extension of the GROUP BY clause. The ROLLUP calculates multiple levels of subtotals across a group of columns (or dimensions) along with the grand total.
+The ROLLUP works as follows:
+First, calculate the standard aggregate values in the GROUP BY clause.
+Then, progressively create higher-level subtotals of the grouping columns, which are col2 and col1 columns, from right to left.
+Finally, calculate the grand total.
+
+--rollup
+select deptno, job, sum(sal)
+from emp
+group by 
+   rollup(deptno,job)
+order by 1,2;
